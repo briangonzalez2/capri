@@ -1,0 +1,205 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #f4f2fa;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.capri-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  background: transparent;
+  -webkit-app-region: drag;
+}
+
+.capri-character {
+  position: relative;
+  width: 170px;
+  height: 190px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  animation: capri-float 3s ease-in-out infinite;
+}
+
+.character-glow {
+  position: absolute;
+  inset: 15px 5px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(167, 139, 250, 0.28),
+    rgba(167, 139, 250, 0)
+  );
+  filter: blur(12px);
+}
+
+.character-face {
+  position: absolute;
+  inset: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-radius: 48% 48% 45% 45%;
+  background: linear-gradient(145deg, #c4b5fd, #8064cf 75%);
+  box-shadow:
+    inset -10px -12px 20px rgba(48, 30, 95, 0.2),
+    0 8px 30px rgba(119, 86, 205, 0.35);
+}
+
+.character-eyes {
+  display: flex;
+  gap: 30px;
+  margin-top: 12px;
+}
+
+.character-eyes span {
+  width: 9px;
+  height: 13px;
+  border-radius: 50%;
+  background: #29213f;
+}
+
+.character-mouth {
+  width: 13px;
+  height: 7px;
+  margin-top: 12px;
+  border-bottom: 2px solid #49365f;
+  border-radius: 50%;
+}
+
+.dialog-bubble {
+  position: absolute;
+  bottom: 185px;
+  left: 50%;
+  width: 260px;
+  max-width: calc(100% - 30px);
+  padding: 16px 35px 16px 17px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 17px;
+  background: #292638;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  -webkit-app-region: no-drag;
+}
+
+.dialog-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: calc(50% - 8px);
+  width: 15px;
+  height: 15px;
+  transform: rotate(45deg);
+  background: #292638;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.dialog-bubble p {
+  margin: 0;
+  color: #eeeaf8;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bubble-close {
+  position: absolute;
+  top: 7px;
+  right: 9px;
+  border: none;
+  background: transparent;
+  color: #aaa5bb;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.message-composer {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  width: 340px;
+  max-width: calc(100% - 30px);
+  display: flex;
+  gap: 7px;
+  padding: 8px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 15px;
+  background: #292638;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+  -webkit-app-region: no-drag;
+}
+
+.message-composer input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 13px;
+}
+
+.message-composer input::placeholder {
+  color: #aaa5bb;
+}
+
+.message-composer button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 9px;
+  background: #8064cf;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.message-composer .composer-close {
+  background: #403c50;
+}
+
+@keyframes capri-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
